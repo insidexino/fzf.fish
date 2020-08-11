@@ -25,8 +25,9 @@ if not set --query FZF_DEFAULT_OPTS
     set --export FZF_DEFAULT_OPTS '--cycle --layout=reverse --border --height 75%'
 end
 
-# In case the user sets fzf_fish_custom_keybindings in their config.fish AFTER the default keybindings
-# have already been set, set up erase_default_bindings to detect this and erase them
+# In case fzf_fish_custom_keybindings is set AFTER the default keybindings have already been
+# set, use an event handler to erase bindings if it fzf_fish_custom_keybindings gets changed
+# For documentation on event handlers, see https://fishshell.com/docs/current/#event
 function erase_default_bindings --on-variable fzf_fish_custom_keybindings
     bind --erase --all \cf
     bind --erase --all \cl
@@ -41,5 +42,5 @@ function uninstall --on-event fzf_uninstall
         echo "fzf.fish key kindings removed"
         set_color normal
     end
-    # Not going to erase FZF_DEFAULT_OPTS because too hard to tell if it set by the user or by this plugin
+    # Not going to erase FZF_DEFAULT_OPTS because too hard to tell if it's set by the user or by this plugin
 end
