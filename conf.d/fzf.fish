@@ -35,7 +35,7 @@ function erase_default_bindings --on-variable fzf_fish_custom_keybindings
     bind --erase --all \cv
 end
 
-function uninstall --on-event fzf_uninstall
+function fzf_uninstall --on-event fzf_uninstall
     if not set --query fzf_fish_custom_keybindings
         erase_default_bindings
         set_color --italics cyan
