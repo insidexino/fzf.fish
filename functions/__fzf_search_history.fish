@@ -5,7 +5,7 @@ function __fzf_search_history --description "Search command history using fzf. R
     set command_with_ts (
         # Reference https://devhints.io/strftime to understand strftime format symbols
         history --null --show-time="%m/%e %H:%M:%S | " |
-        fzf --read0 --tiebreak=index --query=(commandline)
+        fzf-tmux -u 80% --read0 --tiebreak=index --query=(commandline)
     )
 
     if test $status -eq 0
